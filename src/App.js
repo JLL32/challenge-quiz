@@ -10,6 +10,7 @@ function App () {
   const [currentIndex, setCurrentIndex] = useState(0)
   const currentQuestion = questions[currentIndex]
   const progress = (100 / 20) * (currentIndex + 1)
+  const category = decodeURIComponent(currentQuestion.category)
 
   return (
     <Center width='100vw' height='100vh'>
@@ -19,6 +20,7 @@ function App () {
         </Box>
         <Box padding='10px' height='75%'>
           <h2>{`Question ${currentIndex + 1} of ${questions.length}`}</h2>
+          <p>{category}</p>
           <Difficulty value={currentQuestion.difficulty} />
           <button onClick={() => setCurrentIndex(currentIndex + 1)}>Next Question</button>
         </Box>
