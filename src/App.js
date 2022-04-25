@@ -9,7 +9,7 @@ import Difficulty from './components/Difficulty'
 function App () {
   const [currentIndex, setCurrentIndex] = useState(0)
   const currentQuestion = questions[currentIndex]
-  const progress = (100 / 20) * (currentIndex + 1)
+  const progress = (100 / questions.length) * (currentIndex + 1)
   const category = decodeURIComponent(currentQuestion.category)
 
   return (
