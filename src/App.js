@@ -1,18 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Center from './components/Center'
 import Stack from './components/Stack'
 import Box from './components/Box'
 import ProgressBar from './components/ProgressBar'
+import questions from './questions.json'
 
 function App () {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const currentQuestion = questions[currentIndex]
+  const progress = (100 / 20) * (currentIndex + 1)
+
   return (
     <Center width='100vw' height='100vh'>
       <Stack direction='h' width='400px' height='600px'>
         <Box height='10%'>
-          <ProgressBar value={25} />
+          <ProgressBar value={progress} />
         </Box>
         <Box padding='10px' height='75%'>
-          quiz body
+          <h2>{`Question ${currentIndex + 1} of ${questions.length}`}</h2>
+          <h6>{`Difficulty: ${currentQuestion.difficulty}`}</h6>
+          <button onClick={() => setCurrentIndex(currentIndex + 1)}>Next Question</button>
         </Box>
         <Box padding='10px' height='15%'>
           score bar
