@@ -4,6 +4,7 @@ import Stack from './components/Stack'
 import Box from './components/Box'
 import ProgressBar from './components/ProgressBar'
 import questions from './questions.json'
+import Difficulty from './components/Difficulty'
 
 function App () {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -18,7 +19,7 @@ function App () {
         </Box>
         <Box padding='10px' height='75%'>
           <h2>{`Question ${currentIndex + 1} of ${questions.length}`}</h2>
-          <h6>{`Difficulty: ${currentQuestion.difficulty}`}</h6>
+          <Difficulty value={currentQuestion.difficulty} />
           <button onClick={() => setCurrentIndex(currentIndex + 1)}>Next Question</button>
         </Box>
         <Box padding='10px' height='15%'>
