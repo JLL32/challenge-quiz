@@ -3,24 +3,25 @@ import styled from 'styled-components'
 import Center from './Center'
 import Stack from './Stack'
 
-const Choices = ({ type, correctAnswer, incorrectAnswers }) => {
-  const [chosen, setChosen] = useState(false)
-  const invertChosen = useCallback(() => setChosen(!chosen), [chosen])
-  const answers = [correctAnswer, ...incorrectAnswers].map(answer => decodeURIComponent(answer))
+const Choices = ({ answer, setAnswer, type, correctAnswer, incorrectAnswers }) => {
+  // TODO: shuffle it
+  correctAnswer = decodeURIComponent(correctAnswer)
+  incorrectAnswers = incorrectAnswers.map(answer => decodeURIComponent(answer))
+  const [first, second, third, fourth] = [correctAnswer, ...incorrectAnswers]
 
   return (
     <Stack direction='v' height='30%' width='100%' disabled>
       <Center margin='0 0 10px 0'>
         <Stack direction='h'>
-          <Button disabled={chosen} onClick={invertChosen}>{answers[0]}</Button>
-          <Button disabled={chosen} onClick={invertChosen}>{answers[1]}</Button>
+          <ChoiceButton setAnswer={setAnswer} answer={answer} choice={first} correctAnswer={correctAnswer} />
+          <ChoiceButton setAnswer={setAnswer} answer={answer} choice={second} correctAnswer={correctAnswer} />
         </Stack>
       </Center>
       {type === 'multiple' &&
         <Center>
           <Stack direction='h'>
-            <Button disabled={chosen} onClick={invertChosen}>{answers[2]}</Button>
-            <Button disabled={chosen} onClick={invertChosen}>{answers[3]}</Button>
+            <ChoiceButton setAnswer={setAnswer} answer={answer} choice={third} correctAnswer={correctAnswer} />
+            <ChoiceButton setAnswer={setAnswer} answer={answer} choice={fourth} correctAnswer={correctAnswer} />
           </Stack>
         </Center>}
     </Stack>
@@ -29,7 +30,22 @@ const Choices = ({ type, correctAnswer, incorrectAnswers }) => {
 
 export default Choices
 
+const ChoiceButton = ({ setAnswer, answer, choice, correctAnswer }) => {
+  const selected = answer === choice
+  const isCorrect = answer && choice === correctAnswer
+
+  return (
+    <Button selected={selected} correct={isCorrect} disabled={answer} onClick={handleClick}>{choice}</Button>
+  )
+  function handleClick () {
+    setAnswer(choice)
+  }
+}
+
 const Button = styled.button`
 width: 200px;
 margin: 0 5px;
+background-color: palegoldenrod;
+border: 1px solid ${props => props.selected ? '#00ff00' : '#ccc'};
+background-color: ${props => props.correct ? 'green' : ''};
 `

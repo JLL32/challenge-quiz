@@ -9,6 +9,7 @@ import Choices from './components/Choices'
 
 function App () {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [answer, setAnswer] = useState(undefined)
   const currentQuestion = questions[currentIndex]
   const progress = (100 / questions.length) * (currentIndex + 1)
   const category = decodeURIComponent(currentQuestion.category)
@@ -27,15 +28,16 @@ function App () {
           <Box height='20%'>
             <p>{questionDescription}</p>
           </Box>
-          <Choices type={currentQuestion.type} incorrectAnswers={currentQuestion.incorrect_answers} correctAnswer={currentQuestion.correct_answer} />
-          <Center>
-            <Stack direction='v'>
-              <Center>
-                <h3>Sorry!</h3>
-              </Center>
-              <button onClick={() => setCurrentIndex(currentIndex + 1)}>Next Question</button>
-            </Stack>
-          </Center>
+          <Choices answer={answer} setAnswer={setAnswer} type={currentQuestion.type} incorrectAnswers={currentQuestion.incorrect_answers} correctAnswer={decodeURIComponent(currentQuestion.correct_answer)} />
+          {answer &&
+            <Center>
+              <Stack direction='v'>
+                <Center>
+                  <h3>{answer === currentQuestion.correct_answer ? 'Right!' : 'Sorry!'}</h3>
+                </Center>
+                <button onClick={getNextQuesion}>Next Question</button>
+              </Stack>
+            </Center>}
         </Box>
         <Box padding='10px' height='15%'>
           score bar
@@ -43,6 +45,11 @@ function App () {
       </Stack>
     </Center>
   )
+
+  function getNextQuesion () {
+    setAnswer(undefined)
+    setCurrentIndex(currentIndex + 1)
+  }
 }
 
 export default App
