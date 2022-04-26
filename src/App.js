@@ -35,7 +35,9 @@ function App () {
                 <Center>
                   <h3>{answer === currentQuestion.correct_answer ? 'Right!' : 'Sorry!'}</h3>
                 </Center>
-                <button onClick={getNextQuestion}>Next Question</button>
+                {currentIndex == questions.length - 1
+                  ? <button onClick={retry}>Retry</button>
+                  : <button onClick={getNextQuestion}>Next Question</button>}
               </Stack>
             </Center>}
         </Box>
@@ -49,6 +51,10 @@ function App () {
   function getNextQuestion () {
     setAnswer(undefined)
     setCurrentIndex(currentIndex + 1)
+  }
+  function retry () {
+    setAnswer(undefined)
+    setCurrentIndex(0)
   }
 
   function decodeQuestion (question) {
