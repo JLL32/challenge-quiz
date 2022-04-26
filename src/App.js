@@ -10,10 +10,10 @@ import Choices from './components/Choices'
 function App () {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answer, setAnswer] = useState(undefined)
-  const currentQuestion = questions[currentIndex]
+  const currentQuestion = decodeQuestion(questions[currentIndex])
   const progress = (100 / questions.length) * (currentIndex + 1)
-  const category = decodeURIComponent(currentQuestion.category)
-  const questionDescription = decodeURIComponent(currentQuestion.question)
+  const category = currentQuestion.category
+  const questionDescription = currentQuestion.question
 
   return (
     <Center width='100vw' height='100vh'>
@@ -49,6 +49,15 @@ function App () {
   function getNextQuesion () {
     setAnswer(undefined)
     setCurrentIndex(currentIndex + 1)
+  }
+
+  function decodeQuestion (question) {
+    const newQuestion = { ...question }
+    newQuestion.category = decodeURIComponent(question.category)
+    newQuestion.question = decodeURIComponent(question.question)
+    newQuestion.correct_answer = decodeURIComponent(question.correct_answer)
+    newQuestion.incorrect_answers = question.incorrect_answers.map(answer => decodeURIComponent(answer))
+    return newQuestion
   }
 }
 

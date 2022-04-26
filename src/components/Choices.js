@@ -5,8 +5,6 @@ import Stack from './Stack'
 
 const Choices = ({ answer, setAnswer, type, correctAnswer, incorrectAnswers }) => {
   // TODO: shuffle it
-  correctAnswer = decodeURIComponent(correctAnswer)
-  incorrectAnswers = incorrectAnswers.map(answer => decodeURIComponent(answer))
   const [first, second, third, fourth] = [correctAnswer, ...incorrectAnswers]
 
   return (
