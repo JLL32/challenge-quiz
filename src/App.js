@@ -35,7 +35,7 @@ function App () {
                 <Center>
                   <h3>{answer === currentQuestion.correct_answer ? 'Right!' : 'Sorry!'}</h3>
                 </Center>
-                <button onClick={getNextQuesion}>Next Question</button>
+                <button onClick={getNextQuestion}>Next Question</button>
               </Stack>
             </Center>}
         </Box>
@@ -46,7 +46,7 @@ function App () {
     </Center>
   )
 
-  function getNextQuesion () {
+  function getNextQuestion () {
     setAnswer(undefined)
     setCurrentIndex(currentIndex + 1)
   }
