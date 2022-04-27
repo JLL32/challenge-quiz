@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Center from './Center'
 import Stack from './Stack'
 
-const Choices = ({ answer, setAnswer, type, correctAnswer, incorrectAnswers }) => {
+const Choices = ({ answer, choose, type, correctAnswer, incorrectAnswers }) => {
   const choices = [correctAnswer, ...incorrectAnswers]
   // memoizing the array of choices to avoid re-ordering the
   // choices at each re-render of the same question
@@ -13,15 +13,15 @@ const Choices = ({ answer, setAnswer, type, correctAnswer, incorrectAnswers }) =
     <Stack direction='v' height='30%' width='100%'>
       <Center margin='0 0 10px 0'>
         <Stack direction='h'>
-          <ChoiceButton setAnswer={setAnswer} answer={answer} choice={first} correctAnswer={correctAnswer} />
-          <ChoiceButton setAnswer={setAnswer} answer={answer} choice={second} correctAnswer={correctAnswer} />
+          <ChoiceButton choose={choose} answer={answer} choice={first} correctAnswer={correctAnswer} />
+          <ChoiceButton choose={choose} answer={answer} choice={second} correctAnswer={correctAnswer} />
         </Stack>
       </Center>
       {type === 'multiple' &&
         <Center>
           <Stack direction='h'>
-            <ChoiceButton setAnswer={setAnswer} answer={answer} choice={third} correctAnswer={correctAnswer} />
-            <ChoiceButton setAnswer={setAnswer} answer={answer} choice={fourth} correctAnswer={correctAnswer} />
+            <ChoiceButton choose={choose} answer={answer} choice={third} correctAnswer={correctAnswer} />
+            <ChoiceButton choose={choose} answer={answer} choice={fourth} correctAnswer={correctAnswer} />
           </Stack>
         </Center>}
     </Stack>
@@ -47,7 +47,7 @@ const Choices = ({ answer, setAnswer, type, correctAnswer, incorrectAnswers }) =
 
 export default Choices
 
-const ChoiceButton = ({ setAnswer, answer, choice, correctAnswer }) => {
+const ChoiceButton = ({ choose, answer, choice, correctAnswer }) => {
   const selected = answer === choice
   const isCorrect = answer && choice === correctAnswer
 
@@ -55,7 +55,7 @@ const ChoiceButton = ({ setAnswer, answer, choice, correctAnswer }) => {
     <Button key={choice} selected={selected} correct={isCorrect} disabled={answer} onClick={handleClick}>{choice}</Button>
   )
   function handleClick () {
-    setAnswer(choice)
+    choose(choice)
   }
 }
 
