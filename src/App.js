@@ -18,12 +18,10 @@ function App () {
   const progress = (100 / questions.length) * (currentIndex + 1)
   const category = currentQuestion.category
   const questionDescription = currentQuestion.question
-  const score = answeredQuestions > 0 ? correctAnswers / answeredQuestions * 100 : 0
-  const maxScore = score + Math.floor((questions.length - answeredQuestions) / questions.length * 100)
-  const minScore = score - Math.floor((questions.length - answeredQuestions) / questions.length * 100)
-  console.log('min score:', minScore)
-  console.log('score:', score)
-  console.log('max score:', maxScore)
+  const score = answeredQuestions > 0 ? Math.floor(correctAnswers / answeredQuestions * 100) : 0
+  const maxScore = 100 - Math.floor((answeredQuestions - correctAnswers) / questions.length * 100)
+  let minScore = Math.floor(score - (questions.length - answeredQuestions) / questions.length * 100)
+  minScore = minScore < 0 ? 0 : minScore
 
   function choose (choice) {
     setAnsweredQuestions(answeredQuestions + 1)
