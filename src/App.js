@@ -41,6 +41,16 @@ const Category = styled.div`
   color: var(--detail);
   font-size: .9em;
 `
+
+const Button = styled.button`
+  background-color: var(--teal);
+  color: #FFFFFF;
+  border-radius: var(--radius);
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  width: 200px;
+  `
 function App () {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answer, setAnswer] = useState(undefined)
@@ -64,7 +74,7 @@ function App () {
 
   return (
     <NewBox>
-      <Stack direction='v' height="700px" width='500px'>
+      <Stack direction='v' height='700px' width='500px'>
         <Box height='10%'>
           <ProgressBar value={progress} />
         </Box>
@@ -75,16 +85,16 @@ function App () {
             <Difficulty value={currentQuestion.difficulty} />
           </Box>
           <Box height='9%'>{questionDescription}</Box>
-          <Choices answer={answer} choose={choose} type={currentQuestion.type} incorrectAnswers={currentQuestion.incorrect_answers} correctAnswer={currentQuestion.correct_answer} />
+          <Choices answer={answer} choose={choose} incorrectAnswers={currentQuestion.incorrect_answers} correctAnswer={currentQuestion.correct_answer} />
           {answer &&
             <Center>
               <Stack direction='v'>
-                <Center>
+                <Center padding='0 0 30px 0'>
                   <h3>{answer === currentQuestion.correct_answer ? 'Correct!' : 'Sorry!'}</h3>
                 </Center>
                 {currentIndex === questions.length - 1
-                  ? <button onClick={retry}>Retry</button>
-                  : <button onClick={getNextQuestion}>Next Question</button>}
+                  ? <Button onClick={retry}>Retry</Button>
+                  : <Button onClick={getNextQuestion}>Next Question</Button>}
               </Stack>
             </Center>}
         </QuizContainer>
