@@ -18,3 +18,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+:root {
+--teal: #20c997;
+--dark-black: #151518;
+--radius: 0.4rem;
+--detail: #BABABB;
+}
