@@ -1,13 +1,10 @@
-import React, { useState, useCallback, useMemo, Children } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import Center from './Center'
-import Stack from './Stack'
+import useChoices from '../hooks/useChoices'
 
 const Choices = ({ answer, choose, correctAnswer, incorrectAnswers }) => {
-  const choices = [correctAnswer, ...incorrectAnswers]
-  // memoizing the array of choices to avoid re-ordering the
-  // choices at each re-render of the same question
-  const [first, second, third, fourth] = useMemo(() => shuffle(choices), [correctAnswer])
+  const { choices: [first, second, third, fourth], count } =
+    useChoices(correctAnswer, incorrectAnswers)
 
   return (
     <ChoicesContainer>
@@ -15,30 +12,13 @@ const Choices = ({ answer, choose, correctAnswer, incorrectAnswers }) => {
         <ChoiceButton choose={choose} answer={answer} choice={first} correctAnswer={correctAnswer} />
         <ChoiceButton choose={choose} answer={answer} choice={second} correctAnswer={correctAnswer} />
       </BinaryContainer>
-      {(choices.length === 4) &&
+      {(count === 4) &&
         <BinaryContainer>
           <ChoiceButton choose={choose} answer={answer} choice={third} correctAnswer={correctAnswer} />
           <ChoiceButton choose={choose} answer={answer} choice={fourth} correctAnswer={correctAnswer} />
         </BinaryContainer>}
     </ChoicesContainer>
   )
-
-  function shuffle (array) {
-    let currentIndex = array.length; let randomIndex
-
-    // While there remain elements to shuffle.
-    while (currentIndex !== 0) {
-    // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex)
-      currentIndex--;
-
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]]
-    }
-
-    return array
-  }
 }
 
 export default Choices
@@ -66,9 +46,6 @@ color: ${props => (props.correct || props.selected) && 'white'};
 flex: 1;
 cursor: pointer;
 border-radius: var(--radius);
-&:hover {
-
-}
 `
 
 const ChoicesContainer = styled.div`
