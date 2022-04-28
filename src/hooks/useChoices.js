@@ -4,7 +4,10 @@ function useChoices (correctAnswer, incorrectAnswers) {
   const choices = [correctAnswer, ...incorrectAnswers]
   // memoizing the array of choices to avoid re-ordering
   // at each re-render of the same question
-  return { choices: useMemo(() => shuffle(choices), [correctAnswer]), count: choices.length }
+  return {
+    choices: useMemo(() => shuffle(choices), [correctAnswer]),
+    count: choices.length
+  }
 }
 
 export default useChoices
