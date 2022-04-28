@@ -1,13 +1,18 @@
 import React from 'react'
+import styled from 'styled-components'
 
 const Difficulty = ({ value }) => {
   if (value === 'hard') {
-    return <div>★★★</div>
+    return <StartsContainer>★★★</StartsContainer>
   }
   if (value === 'medium') {
-    return <div>★★☆</div>
+    return <StartsContainer>★★☆</StartsContainer>
   }
-  return <div>★☆☆</div>
+  return <StartsContainer>★☆☆</StartsContainer>
 }
+
+const StartsContainer = styled.div`
+color: var(--teal);
+`
 
 export default Difficulty
