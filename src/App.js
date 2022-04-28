@@ -9,13 +9,8 @@ import Choices from './components/Choices'
 import ScoreBar from './components/ScoreBar'
 import PrimaryButton from './components/PrimaryButton'
 import Category from './components/Category'
+import Title from './components/Title'
 import useQuiz from './hooks/useQuiz'
-
-
-const Title = styled.h2`
-padding : 0px;
-margin: 0px;
-`
 
 function App () {
   const quiz = useQuiz()
