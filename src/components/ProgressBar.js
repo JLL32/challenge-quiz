@@ -5,8 +5,8 @@ import Box from './Box'
 const ProgressBar = ({ value }) => {
   return (
     <BarContainer>
-      <Bar value={value}/>
-      <BorderBar/>
+      <Bar value={value} />
+      <BorderBar />
     </BarContainer>
   )
 }
