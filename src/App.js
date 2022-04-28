@@ -7,50 +7,14 @@ import ProgressBar from './components/ProgressBar'
 import Difficulty from './components/Difficulty'
 import Choices from './components/Choices'
 import ScoreBar from './components/ScoreBar'
+import PrimaryButton from './components/PrimaryButton'
+import Category from './components/Category'
 import useQuiz from './hooks/useQuiz'
 
-const QuizContainer = styled.div`
-display: flex;
-flex-direction: column;
-height: 75%;
-gap: 2rem;
-`
 
 const Title = styled.h2`
 padding : 0px;
 margin: 0px;
-`
-
-const ScoreContainer = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: flex-end;
-height: 15%;
-`
-
-const SuperContainer = styled.div`
-background-color: ${props => props.bg};
-padding: 12px;
-border: 1px solid var(--teal);
-border-radius: var(--radius);
-padding: 4rem;
-color: #FFFFFF;
-font-family: sans-serif;
-`
-
-const Category = styled.div`
-color: var(--detail);
-font-size: .9em;
-`
-
-const Button = styled.button`
-background-color: var(--teal);
-color: #FFFFFF;
-border-radius: var(--radius);
-padding: 8px;
-border: none;
-cursor: pointer;
-width: 200px;
 `
 
 function App () {
@@ -84,9 +48,9 @@ function App () {
                   </h3>
                 </Center>
                 {quiz.currentIndex === quiz.count - 1
-                  ? <Button onClick={quiz.retry}>Retry</Button>
-                  : <Button onClick={quiz.getNextQuestion}> Next Question
-                  </Button>}
+                  ? <PrimaryButton onClick={quiz.retry}>Retry</PrimaryButton>
+                  : <PrimaryButton onClick={quiz.getNextQuestion}> Next Question
+                  </PrimaryButton>}
               </Stack>
             </Center>}
         </QuizContainer>
@@ -103,3 +67,27 @@ function App () {
 }
 
 export default App
+
+const ScoreContainer = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+height: 15%;
+`
+
+const SuperContainer = styled.div`
+background-color: ${props => props.bg};
+padding: 12px;
+border: 1px solid var(--teal);
+border-radius: var(--radius);
+padding: 4rem;
+color: #FFFFFF;
+font-family: sans-serif;
+`
+
+const QuizContainer = styled.div`
+display: flex;
+flex-direction: column;
+height: 75%;
+gap: 2rem;
+`
