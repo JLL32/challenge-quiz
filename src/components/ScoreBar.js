@@ -8,29 +8,23 @@ const ScoreBar = ({ score, minScore, maxScore }) => {
     <Box>
       <TextContainer>
         <Box>
-          Score: {score}%
+          Score: <Highlight>{score}%</Highlight>
         </Box>
         <Box>
-          Max Score: {maxScore}%
+          Max Score: <Highlight>{maxScore}%</Highlight>
         </Box>
       </TextContainer>
       <Parent>
-        {/* <Bar3 value={maxScore} />
+        <Bar1 value={maxScore} />
         <Bar2 value={score} />
-        <Bar1 value={minScore} />
-        <Bar4 /> */}
-        <Bar1 value={maxScore}></Bar1>
-        <Bar2 value={score}></Bar2>
-        <Bar3 value={minScore}></Bar3>
-        <Bar4></Bar4>
+        <Bar3 value={minScore} />
+        <Bar4 />
       </Parent>
     </Box>
   )
 }
 
-// const Bar = styled.div`
-//   width: ${props => props.value}%;
-// `
+export default ScoreBar
 
 const Parent = styled.div`
 width: 100%;
@@ -51,21 +45,21 @@ border-radius: ${props => props.value === 100 ? '8px' : ''};
 `
 
 const Bar1 = styled(Bar)`
-background-color: green;
+background-color: #77F2E4;
 `
 
 const Bar2 = styled(Bar)`
-background-color: blue;
+background-color: #60C4B8;
 `
 
 const Bar3 = styled(Bar)`
-background-color: grey;
+background-color: #38736C;
 `
 
 const Bar4 = styled(Bar)`
 background-color: transparent;
-border: 1px solid black;
-border-radius: 8px;
+border: 1px solid var(--teal);
+border-radius: var(--radius);
 width: 100%;
 `
 
@@ -75,4 +69,6 @@ flex-direction: row;
 justify-content: space-between;
 `
 
-export default ScoreBar
+const Highlight = styled.span`
+color: var(--teal);
+`
