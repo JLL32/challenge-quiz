@@ -17,7 +17,7 @@ function App () {
 
   return (
     <SuperContainer>
-      <Stack direction='v' height='700px' width='500px'>
+      <Stack direction='v' height='100%' width='100%'>
         <Box height='10%'>
           <ProgressBar value={quiz.progress} />
         </Box>
@@ -70,14 +70,16 @@ justify-content: flex-end;
 height: 15%;
 `
 
-const SuperContainer = styled.div`
+const SuperContainer = styled(Center)`
 background-color: ${props => props.bg};
 padding: 12px;
 border: 1px solid var(--teal);
 border-radius: var(--radius);
-padding: 4rem;
 color: #FFFFFF;
 font-family: sans-serif;
+width: 570px;
+height: 770px;
+padding: 30px;
 `
 
 const QuizContainer = styled.div`
