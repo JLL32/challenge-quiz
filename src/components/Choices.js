@@ -57,14 +57,21 @@ const ChoiceButton = ({ choose, answer, choice, correctAnswer }) => {
 
 const Button = styled.button`
 width: 100%;
-background-color: palegoldenrod;
-border: 1px solid ${props => props.selected ? '#00ff00' : '#ccc'};
-background-color: ${props => props.correct ? 'green' : ''};
+background-color: white;
+padding: 8px;
+border: none;
+background-color: ${props => props.correct ? 'var(--teal)' : ''};
+background-color: ${props => props.selected && !props.correct ? '#e34850' : ''};
+color: ${props => (props.correct || props.selected) && 'white'};
 flex: 1;
+cursor: pointer;
+border-radius: var(--radius);
+&:hover {
+
+}
 `
 
 const ChoicesContainer = styled.div`
-background-color: aliceblue;
 width: 100%;
 display: flex;
 flex-direction: column;
