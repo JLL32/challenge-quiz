@@ -37,12 +37,12 @@ function App () {
             <Center>
               <Stack direction='v'>
                 <Center padding='0 0 30px 0'>
-                  <h3>{quiz.answer === quiz.currentQuestion.correct_answer
+                  <h3>{quiz.isCorrect
                     ? 'Correct!'
                     : 'Sorry!'}
                   </h3>
                 </Center>
-                {quiz.currentIndex === quiz.count - 1
+                {quiz.isLastQuestion
                   ? <PrimaryButton onClick={quiz.retry}>Retry</PrimaryButton>
                   : <PrimaryButton onClick={quiz.getNextQuestion}> Next Question
                   </PrimaryButton>}

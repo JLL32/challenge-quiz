@@ -12,6 +12,8 @@ function useQuiz () {
   currentQuestion.title = `Question ${currentIndex + 1} of ${questions.length}`
   const progress = (100 / questions.length) * (currentIndex + 1)
   const count = questions.length
+  const isCorrect = answer === currentQuestion.correct_answer
+  const isLastQuestion = currentIndex === count - 1
 
   return {
     currentIndex,
@@ -22,7 +24,9 @@ function useQuiz () {
     choose,
     getNextQuestion,
     retry,
-    count
+    count,
+    isCorrect,
+    isLastQuestion
   }
 
   function choose (choice) {
