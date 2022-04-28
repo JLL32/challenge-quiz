@@ -61,7 +61,7 @@ background-color: white;
 padding: 8px;
 border: none;
 background-color: ${props => props.correct ? 'var(--teal)' : ''};
-background-color: ${props => props.selected && !props.correct ? '#e34850' : ''};
+background-color: ${props => props.selected && !props.correct ? '#BF3D44' : ''};
 color: ${props => (props.correct || props.selected) && 'white'};
 flex: 1;
 cursor: pointer;
