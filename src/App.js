@@ -1,24 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Center from './components/Center'
 import Stack from './components/Stack'
 import Box from './components/Box'
 import ProgressBar from './components/ProgressBar'
-import questions from './questions.json'
 import Difficulty from './components/Difficulty'
 import Choices from './components/Choices'
 import ScoreBar from './components/ScoreBar'
+import useQuiz from './hooks/useQuiz'
 
 const QuizContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 75%;
-  gap: 2rem;
-  `
+display: flex;
+flex-direction: column;
+height: 75%;
+gap: 2rem;
+`
+
 const Title = styled.h2`
-  padding : 0px;
-  margin: 0px;
-  `
+padding : 0px;
+margin: 0px;
+`
 
 const ScoreContainer = styled.div`
 display: flex;
@@ -27,108 +28,78 @@ justify-content: flex-end;
 height: 15%;
 `
 
-const NewBox = styled.div`
-  background-color: ${props => props.bg};
-  padding: 12px;
-  border: 1px solid var(--teal);
-  border-radius: var(--radius);
-  padding: 4rem;
-  color: #FFFFFF;
-  font-family: sans-serif;
-  `
+const SuperContainer = styled.div`
+background-color: ${props => props.bg};
+padding: 12px;
+border: 1px solid var(--teal);
+border-radius: var(--radius);
+padding: 4rem;
+color: #FFFFFF;
+font-family: sans-serif;
+`
 
 const Category = styled.div`
-  color: var(--detail);
-  font-size: .9em;
+color: var(--detail);
+font-size: .9em;
 `
 
 const Button = styled.button`
-  background-color: var(--teal);
-  color: #FFFFFF;
-  border-radius: var(--radius);
-  padding: 8px;
-  border: none;
-  cursor: pointer;
-  width: 200px;
-  `
+background-color: var(--teal);
+color: #FFFFFF;
+border-radius: var(--radius);
+padding: 8px;
+border: none;
+cursor: pointer;
+width: 200px;
+`
+
 function App () {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [answer, setAnswer] = useState(undefined)
-  const [correctAnswers, setCorrectAnswers] = useState(0)
-  const [answeredQuestions, setAnsweredQuestions] = useState(0)
-
-  const currentQuestion = decodeQuestion(questions[currentIndex])
-  const progress = (100 / questions.length) * (currentIndex + 1)
-  const category = currentQuestion.category
-  const questionDescription = currentQuestion.question
-  const score = answeredQuestions > 0 ? Math.floor(correctAnswers / answeredQuestions * 100) : 0
-  const maxScore = 100 - Math.floor((answeredQuestions - correctAnswers) / questions.length * 100)
-  let minScore = Math.floor(score - (questions.length - answeredQuestions) / questions.length * 100)
-  minScore = minScore < 0 ? 0 : minScore
-
-  function choose (choice) {
-    setAnsweredQuestions(answeredQuestions + 1)
-    setAnswer(choice)
-    if (choice === currentQuestion.correct_answer) { increaseCorrectAnswers() }
-  }
+  const quiz = useQuiz()
 
   return (
-    <NewBox>
+    <SuperContainer>
       <Stack direction='v' height='700px' width='500px'>
         <Box height='10%'>
-          <ProgressBar value={progress} />
+          <ProgressBar value={quiz.progress} />
         </Box>
         <QuizContainer>
           <Box>
-            <Title>{`Question ${currentIndex + 1} of ${questions.length}`}</Title>
-            <Category>{category}</Category>
-            <Difficulty value={currentQuestion.difficulty} />
+            <Title>{quiz.currentQuestion.title}</Title>
+            <Category>{quiz.currentQuestion.category}</Category>
+            <Difficulty value={quiz.currentQuestion.difficulty} />
           </Box>
-          <Box height='9%'>{questionDescription}</Box>
-          <Choices answer={answer} choose={choose} incorrectAnswers={currentQuestion.incorrect_answers} correctAnswer={currentQuestion.correct_answer} />
-          {answer &&
+          <Box height='9%'>{quiz.currentQuestion.question}</Box>
+          <Choices
+            answer={quiz.answer} choose={quiz.choose}
+            incorrectAnswers={quiz.currentQuestion.incorrect_answers}
+            correctAnswer={quiz.currentQuestion.correct_answer}
+          />
+          {quiz.answer &&
             <Center>
               <Stack direction='v'>
                 <Center padding='0 0 30px 0'>
-                  <h3>{answer === currentQuestion.correct_answer ? 'Correct!' : 'Sorry!'}</h3>
+                  <h3>{quiz.answer === quiz.currentQuestion.correct_answer
+                    ? 'Correct!'
+                    : 'Sorry!'}
+                  </h3>
                 </Center>
-                {currentIndex === questions.length - 1
-                  ? <Button onClick={retry}>Retry</Button>
-                  : <Button onClick={getNextQuestion}>Next Question</Button>}
+                {quiz.currentIndex === quiz.count - 1
+                  ? <Button onClick={quiz.retry}>Retry</Button>
+                  : <Button onClick={quiz.getNextQuestion}> Next Question
+                  </Button>}
               </Stack>
             </Center>}
         </QuizContainer>
         <ScoreContainer>
-          <ScoreBar minScore={minScore} score={score} maxScore={maxScore} />
+          <ScoreBar
+            minScore={quiz.minScore}
+            score={quiz.score}
+            maxScore={quiz.maxScore}
+          />
         </ScoreContainer>
       </Stack>
-    </NewBox>
+    </SuperContainer>
   )
-
-  function increaseCorrectAnswers () {
-    setCorrectAnswers(correctAnswers + 1)
-  }
-
-  function getNextQuestion () {
-    setAnswer(undefined)
-    setCurrentIndex(currentIndex + 1)
-  }
-
-  function retry () {
-    setAnswer(undefined)
-    setCurrentIndex(0)
-    setCorrectAnswers(0)
-    setAnsweredQuestions(0)
-  }
-
-  function decodeQuestion (question) {
-    const newQuestion = { ...question }
-    newQuestion.category = decodeURIComponent(question.category)
-    newQuestion.question = decodeURIComponent(question.question)
-    newQuestion.correct_answer = decodeURIComponent(question.correct_answer)
-    newQuestion.incorrect_answers = question.incorrect_answers.map(answer => decodeURIComponent(answer))
-    return newQuestion
-  }
 }
 
 export default App
