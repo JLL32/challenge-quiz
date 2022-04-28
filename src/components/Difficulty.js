@@ -2,12 +2,12 @@ import React from 'react'
 
 const Difficulty = ({ value }) => {
   if (value === 'hard') {
-    return <p>★★★</p>
+    return <div>★★★</div>
   }
   if (value === 'medium') {
-    return <p>★★☆</p>
+    return <div>★★☆</div>
   }
-  return <p>★☆☆</p>
+  return <div>★☆☆</div>
 }
 
 export default Difficulty

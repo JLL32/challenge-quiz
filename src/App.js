@@ -12,14 +12,28 @@ import ScoreBar from './components/ScoreBar'
 const QuizContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   height: 75%;
-  padding-left: 10px;
-  padding-right: 10px;
+  gap: 2rem;
   `
 const Title = styled.h2`
   padding : 0px;
   margin: 0px;
+  `
+const ScoreContainer = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+height: 15%;
+`
+
+const NewBox = styled.div`
+  background-color: ${props => props.bg};
+  padding: 12px;
+  border: 1px solid #20c997;
+  border-radius: 0.4rem;
+  padding: 4rem;
+  color: #FFFFFF;
+  font-family: sans-serif;
   `
 function App () {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -43,8 +57,8 @@ function App () {
   }
 
   return (
-    <Center width='100vw' height='100vh'>
-      <Stack direction='v' width='500px' height='700px'>
+    <NewBox>
+      <Stack direction='v' height="700px" width='500px'>
         <Box height='10%'>
           <ProgressBar value={progress} />
         </Box>
@@ -68,11 +82,11 @@ function App () {
               </Stack>
             </Center>}
         </QuizContainer>
-        <Box padding='10px' height='15%'>
+        <ScoreContainer>
           <ScoreBar minScore={minScore} score={score} maxScore={maxScore} />
-        </Box>
+        </ScoreContainer>
       </Stack>
-    </Center>
+    </NewBox>
   )
 
   function increaseCorrectAnswers () {

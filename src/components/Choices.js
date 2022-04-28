@@ -16,10 +16,10 @@ const Choices = ({ answer, choose, correctAnswer, incorrectAnswers }) => {
         <ChoiceButton choose={choose} answer={answer} choice={second} correctAnswer={correctAnswer} />
       </BinaryContainer>
       {(choices.length === 4) &&
-      <BinaryContainer>
-        <ChoiceButton choose={choose} answer={answer} choice={third} correctAnswer={correctAnswer} />
-        <ChoiceButton choose={choose} answer={answer} choice={fourth} correctAnswer={correctAnswer} />
-      </BinaryContainer>}
+        <BinaryContainer>
+          <ChoiceButton choose={choose} answer={answer} choice={third} correctAnswer={correctAnswer} />
+          <ChoiceButton choose={choose} answer={answer} choice={fourth} correctAnswer={correctAnswer} />
+        </BinaryContainer>}
     </ChoicesContainer>
   )
 

@@ -5,7 +5,7 @@ import Box from './Box'
 
 const ScoreBar = ({ score, minScore, maxScore }) => {
   return (
-    <Box width='100%' height='100%'>
+    <Box>
       <TextContainer>
         <Box>
           Score: {score}%
@@ -15,10 +15,14 @@ const ScoreBar = ({ score, minScore, maxScore }) => {
         </Box>
       </TextContainer>
       <Parent>
-        <Bar3 value={maxScore} />
+        {/* <Bar3 value={maxScore} />
         <Bar2 value={score} />
         <Bar1 value={minScore} />
-        <Bar4 />
+        <Bar4 /> */}
+        <Bar1 value={maxScore}></Bar1>
+        <Bar2 value={score}></Bar2>
+        <Bar3 value={minScore}></Bar3>
+        <Bar4></Bar4>
       </Parent>
     </Box>
   )
@@ -31,33 +35,34 @@ const ScoreBar = ({ score, minScore, maxScore }) => {
 const Parent = styled.div`
 width: 100%;
 height: 100%;
-position: relative;
 border-radius: 8px;
+display: grid;
+justify-items: start;
+align-items: start;
 `
 
-const Bar1 = styled(Box)`
-background-color: gray;
-position: absolute;
-left: 0;
-top: 0;
-bottom: 0;
-right: 50px;
+const Bar = styled.div`
+height: 30px;
+grid-column-start: 1;
+grid-row-start: 1;
 border-radius: 8px 0 0 8px;
-height: 35%;
 width: ${props => props.value}%;
 border-radius: ${props => props.value === 100 ? '8px' : ''};
 `
-const Bar2 = styled(Bar1)`
-background-color: aliceblue;
-width: ${props => props.value}%;
+
+const Bar1 = styled(Bar)`
+background-color: green;
 `
 
-const Bar3 = styled(Bar1)`
-background-color: moccasin;
-width: ${props => props.value}%;
+const Bar2 = styled(Bar)`
+background-color: blue;
 `
 
-const Bar4 = styled(Bar1)`
+const Bar3 = styled(Bar)`
+background-color: grey;
+`
+
+const Bar4 = styled(Bar)`
 background-color: transparent;
 border: 1px solid black;
 border-radius: 8px;
