@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Stack from './Stack'
 import Box from './Box'
 
 const ScoreBar = ({ score, minScore, maxScore }) => {

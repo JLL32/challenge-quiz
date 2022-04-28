@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import questions from '../questions.json'
+import useScore from './useScore'
 
 function useQuiz () {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -9,16 +10,7 @@ function useQuiz () {
 
   const currentQuestion = decodeQuestion(questions[currentIndex])
   currentQuestion.title = `Question ${currentIndex + 1} of ${questions.length}`
-
   const progress = (100 / questions.length) * (currentIndex + 1)
-  const score = answeredQuestions > 0
-    ? Math.floor(correctAnswers / answeredQuestions * 100)
-    : 0
-  const maxScore = 100 - Math.floor(
-    (answeredQuestions - correctAnswers) / questions.length * 100)
-  const minScore = Math.floor(
-    maxScore - (questions.length - answeredQuestions) /
-      questions.length * 100)
   const count = questions.length
 
   return {
@@ -26,9 +18,7 @@ function useQuiz () {
     currentQuestion,
     answer,
     progress,
-    score,
-    maxScore,
-    minScore,
+    ...useScore(answeredQuestions, correctAnswers, questions.length),
     choose,
     getNextQuestion,
     retry,
