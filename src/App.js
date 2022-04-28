@@ -19,6 +19,7 @@ const Title = styled.h2`
   padding : 0px;
   margin: 0px;
   `
+
 const ScoreContainer = styled.div`
 display: flex;
 flex-direction: column;
@@ -29,12 +30,17 @@ height: 15%;
 const NewBox = styled.div`
   background-color: ${props => props.bg};
   padding: 12px;
-  border: 1px solid #20c997;
-  border-radius: 0.4rem;
+  border: 1px solid var(--teal);
+  border-radius: var(--radius);
   padding: 4rem;
   color: #FFFFFF;
   font-family: sans-serif;
   `
+
+const Category = styled.div`
+  color: var(--detail);
+  font-size: .9em;
+`
 function App () {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answer, setAnswer] = useState(undefined)
@@ -65,7 +71,7 @@ function App () {
         <QuizContainer>
           <Box>
             <Title>{`Question ${currentIndex + 1} of ${questions.length}`}</Title>
-            <div>{category}</div>
+            <Category>{category}</Category>
             <Difficulty value={currentQuestion.difficulty} />
           </Box>
           <Box height='9%'>{questionDescription}</Box>
