@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 import Center from './components/Center'
 import Stack from './components/Stack'
 import Box from './components/Box'
@@ -8,6 +9,18 @@ import Difficulty from './components/Difficulty'
 import Choices from './components/Choices'
 import ScoreBar from './components/ScoreBar'
 
+const QuizContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 75%;
+  padding-left: 10px;
+  padding-right: 10px;
+  `
+const Title = styled.h2`
+  padding : 0px;
+  margin: 0px;
+  `
 function App () {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answer, setAnswer] = useState(undefined)
@@ -31,17 +44,17 @@ function App () {
 
   return (
     <Center width='100vw' height='100vh'>
-      <Stack direction='v' width='400px' height='600px'>
+      <Stack direction='v' width='500px' height='700px'>
         <Box height='10%'>
           <ProgressBar value={progress} />
         </Box>
-        <Box padding='10px' height='75%'>
-          <h2>{`Question ${currentIndex + 1} of ${questions.length}`}</h2>
-          <p>{category}</p>
-          <Difficulty value={currentQuestion.difficulty} />
-          <Box height='20%'>
-            <p>{questionDescription}</p>
+        <QuizContainer>
+          <Box>
+            <Title>{`Question ${currentIndex + 1} of ${questions.length}`}</Title>
+            <div>{category}</div>
+            <Difficulty value={currentQuestion.difficulty} />
           </Box>
+          <Box height='9%'>{questionDescription}</Box>
           <Choices answer={answer} choose={choose} type={currentQuestion.type} incorrectAnswers={currentQuestion.incorrect_answers} correctAnswer={currentQuestion.correct_answer} />
           {answer &&
             <Center>
@@ -54,7 +67,7 @@ function App () {
                   : <button onClick={getNextQuestion}>Next Question</button>}
               </Stack>
             </Center>}
-        </Box>
+        </QuizContainer>
         <Box padding='10px' height='15%'>
           <ScoreBar minScore={minScore} score={score} maxScore={maxScore} />
         </Box>
