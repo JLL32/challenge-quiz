@@ -3,28 +3,24 @@ import styled from 'styled-components'
 import Center from './Center'
 import Stack from './Stack'
 
-const Choices = ({ answer, choose, type, correctAnswer, incorrectAnswers }) => {
+const Choices = ({ answer, choose, correctAnswer, incorrectAnswers }) => {
   const choices = [correctAnswer, ...incorrectAnswers]
   // memoizing the array of choices to avoid re-ordering the
   // choices at each re-render of the same question
   const [first, second, third, fourth] = useMemo(() => shuffle(choices), [correctAnswer])
 
   return (
-    <Stack direction='v' height='30%' width='100%'>
-      <Center margin='0 0 10px 0'>
-        <Stack direction='h'>
-          <ChoiceButton choose={choose} answer={answer} choice={first} correctAnswer={correctAnswer} />
-          <ChoiceButton choose={choose} answer={answer} choice={second} correctAnswer={correctAnswer} />
-        </Stack>
-      </Center>
-      {type === 'multiple' &&
-        <Center>
-          <Stack direction='h'>
-            <ChoiceButton choose={choose} answer={answer} choice={third} correctAnswer={correctAnswer} />
-            <ChoiceButton choose={choose} answer={answer} choice={fourth} correctAnswer={correctAnswer} />
-          </Stack>
-        </Center>}
-    </Stack>
+    <ChoicesContainer>
+      <BinaryContainer>
+        <ChoiceButton choose={choose} answer={answer} choice={first} correctAnswer={correctAnswer} />
+        <ChoiceButton choose={choose} answer={answer} choice={second} correctAnswer={correctAnswer} />
+      </BinaryContainer>
+      {(choices.length === 4) &&
+      <BinaryContainer>
+        <ChoiceButton choose={choose} answer={answer} choice={third} correctAnswer={correctAnswer} />
+        <ChoiceButton choose={choose} answer={answer} choice={fourth} correctAnswer={correctAnswer} />
+      </BinaryContainer>}
+    </ChoicesContainer>
   )
 
   function shuffle (array) {
@@ -60,9 +56,26 @@ const ChoiceButton = ({ choose, answer, choice, correctAnswer }) => {
 }
 
 const Button = styled.button`
-width: 200px;
-margin: 0 5px;
+width: 100%;
 background-color: palegoldenrod;
 border: 1px solid ${props => props.selected ? '#00ff00' : '#ccc'};
 background-color: ${props => props.correct ? 'green' : ''};
+flex: 1;
+`
+
+const ChoicesContainer = styled.div`
+background-color: aliceblue;
+width: 100%;
+display: flex;
+flex-direction: column;
+gap: 1rem;
+`
+
+const BinaryContainer = styled.div`
+display: flex;
+gap: 1rem;
+align-items: flex-start;
+@media (max-width: 500px) {
+    flex-direction: column;
+}
 `
