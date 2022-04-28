@@ -5,21 +5,21 @@ import Box from './Box'
 
 const ScoreBar = ({ score, minScore, maxScore }) => {
   return (
-    <Box width="100%" height="100%">
-    <TextContainer>
-      <Box>
-        Score: {score}%
-      </Box>
-      <Box>
-        Max Score: {maxScore}%
-      </Box>
-    </TextContainer>
-    <Parent>
-    <Bar3 value={maxScore}></Bar3>
-    <Bar2 value={score}></Bar2>
-    <Bar1 value={minScore}></Bar1>
-    <Bar4></Bar4>
-    </ Parent>
+    <Box width='100%' height='100%'>
+      <TextContainer>
+        <Box>
+          Score: {score}%
+        </Box>
+        <Box>
+          Max Score: {maxScore}%
+        </Box>
+      </TextContainer>
+      <Parent>
+        <Bar3 value={maxScore} />
+        <Bar2 value={score} />
+        <Bar1 value={minScore} />
+        <Bar4 />
+      </Parent>
     </Box>
   )
 }
@@ -45,7 +45,7 @@ right: 50px;
 border-radius: 8px 0 0 8px;
 height: 35%;
 width: ${props => props.value}%;
-border-radius: ${props => props.value === 100 ? '8px': ''};
+border-radius: ${props => props.value === 100 ? '8px' : ''};
 `
 const Bar2 = styled(Bar1)`
 background-color: aliceblue;
