@@ -47,7 +47,7 @@ const BinaryContainer = styled.div`
 display: flex;
 gap: 1rem;
 align-items: flex-start;
-@media (max-width: 500px) {
+@media (max-width: 530px) {
     flex-direction: column;
 }
 `
