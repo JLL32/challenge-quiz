@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import questions from '../questions.json'
 import useScore from './useScore'
+import questions from '../questions.json'
 
 export default useQuiz
 
