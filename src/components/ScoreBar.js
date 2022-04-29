@@ -2,7 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Box from './Box'
 
-const ScoreBar = ({ score, minScore, maxScore }) => {
+export default ScoreBar
+
+function ScoreBar({ score, minScore, maxScore }) {
   return (
     <Box>
       <TextContainer>
@@ -23,7 +25,6 @@ const ScoreBar = ({ score, minScore, maxScore }) => {
   )
 }
 
-export default ScoreBar
 
 const Parent = styled.div`
 width: 100%;

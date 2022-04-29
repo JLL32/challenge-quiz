@@ -2,6 +2,8 @@ import { useState } from 'react'
 import questions from '../questions.json'
 import useScore from './useScore'
 
+export default useQuiz
+
 function useQuiz () {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answer, setAnswer] = useState(undefined)
@@ -51,8 +53,6 @@ function useQuiz () {
     setAnsweredQuestions(0)
   }
 }
-
-export default useQuiz
 
 function decodeQuestion (question) {
   const newQuestion = { ...question }

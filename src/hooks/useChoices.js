@@ -1,5 +1,7 @@
 import { useMemo } from 'react'
 
+export default useChoices
+
 function useChoices (correctAnswer, incorrectAnswers) {
   const choices = [correctAnswer, ...incorrectAnswers]
   // memoizing the array of choices to avoid re-ordering
@@ -9,8 +11,6 @@ function useChoices (correctAnswer, incorrectAnswers) {
     count: choices.length
   }
 }
-
-export default useChoices
 
 function shuffle (array) {
   let currentIndex = array.length

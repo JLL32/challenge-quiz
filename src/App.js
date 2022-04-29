@@ -12,6 +12,8 @@ import Category from './components/Category'
 import Title from './components/Title'
 import useQuiz from './hooks/useQuiz'
 
+export default App
+
 function App () {
   const quiz = useQuiz()
 
@@ -60,8 +62,6 @@ function App () {
     </SuperContainer>
   )
 }
-
-export default App
 
 const ScoreContainer = styled.div`
 display: flex;

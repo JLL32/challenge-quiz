@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const ProgressBar = ({ value }) => {
+export default ProgressBar
+
+function ProgressBar({ value }) {
   return (
     <BarContainer>
       <Bar value={value} />
@@ -9,8 +11,6 @@ const ProgressBar = ({ value }) => {
     </BarContainer>
   )
 }
-
-export default ProgressBar
 
 const BarContainer = styled.div`
 width: 100%;

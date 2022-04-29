@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import useChoices from '../hooks/useChoices'
 import ChoiceButton from './ChoiceButton'
 
-const Choices = ({ answer, choose, correctAnswer, incorrectAnswers }) => {
+export default Choices
+
+function Choices({ answer, choose, correctAnswer, incorrectAnswers }) {
   const { choices: [first, second, third, fourth], count } =
     useChoices(correctAnswer, incorrectAnswers)
 
@@ -33,8 +35,6 @@ const Choices = ({ answer, choose, correctAnswer, incorrectAnswers }) => {
     </ChoicesContainer>
   )
 }
-
-export default Choices
 
 const ChoicesContainer = styled.div`
 width: 100%;

@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const ChoiceButton = ({ choose, answer, choice, correctAnswer }) => {
+export default ChoiceButton
+
+function ChoiceButton({ choose, answer, choice, correctAnswer }) {
   const selected = answer === choice
   const isCorrect = answer && choice === correctAnswer
 
@@ -16,8 +18,6 @@ const ChoiceButton = ({ choose, answer, choice, correctAnswer }) => {
     choose(choice)
   }
 }
-
-export default ChoiceButton
 
 const Button = styled.button`
 width: 100%;

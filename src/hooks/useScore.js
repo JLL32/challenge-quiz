@@ -1,3 +1,5 @@
+export default useScore
+
 function useScore (answeredQuestions, correctAnswers, count) {
   const score = answeredQuestions > 0
     ? Math.floor(correctAnswers / answeredQuestions * 100)
@@ -8,5 +10,3 @@ function useScore (answeredQuestions, correctAnswers, count) {
     maxScore - (count - answeredQuestions) / count * 100)
   return { score, maxScore, minScore }
 }
-
-export default useScore
