@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export default ChoiceButton
 
-function ChoiceButton({ choose, answer, choice, correctAnswer }) {
+function ChoiceButton ({ choose, answer, choice, correctAnswer }) {
   const selected = answer === choice
   const isCorrect = answer && choice === correctAnswer
 

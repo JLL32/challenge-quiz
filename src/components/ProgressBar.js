@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export default ProgressBar
 
-function ProgressBar({ value }) {
+function ProgressBar ({ value }) {
   return (
     <BarContainer>
       <Bar value={value} />

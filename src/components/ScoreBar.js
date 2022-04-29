@@ -4,7 +4,7 @@ import Box from './Box'
 
 export default ScoreBar
 
-function ScoreBar({ score, minScore, maxScore }) {
+function ScoreBar ({ score, minScore, maxScore }) {
   return (
     <Box>
       <TextContainer>
@@ -24,7 +24,6 @@ function ScoreBar({ score, minScore, maxScore }) {
     </Box>
   )
 }
-
 
 const Parent = styled.div`
 width: 100%;

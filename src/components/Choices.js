@@ -5,7 +5,7 @@ import ChoiceButton from './ChoiceButton'
 
 export default Choices
 
-function Choices({ answer, choose, correctAnswer, incorrectAnswers }) {
+function Choices ({ answer, choose, correctAnswer, incorrectAnswers }) {
   const { choices: [first, second, third, fourth], count } =
     useChoices(correctAnswer, incorrectAnswers)
 
