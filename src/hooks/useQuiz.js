@@ -33,11 +33,9 @@ function useQuiz () {
   function choose (choice) {
     setAnsweredQuestions(answeredQuestions + 1)
     setAnswer(choice)
-    if (choice === currentQuestion.correct_answer) { increaseCorrectAnswers() }
-  }
-
-  function increaseCorrectAnswers () {
-    setCorrectAnswers(correctAnswers + 1)
+    if (choice === currentQuestion.correct_answer) {
+      setCorrectAnswers(correctAnswers + 1)
+    }
   }
 
   function getNextQuestion () {
