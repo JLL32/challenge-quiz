@@ -18,7 +18,6 @@ function useQuiz () {
   const isLastQuestion = currentIndex === count - 1
 
   return {
-    currentIndex,
     currentQuestion,
     answer,
     progress,
