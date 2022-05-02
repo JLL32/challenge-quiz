@@ -8,7 +8,6 @@ function useQuiz () {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answer, setAnswer] = useState(undefined)
   const [correctAnswers, setCorrectAnswers] = useState(0)
-  const [answeredQuestions, setAnsweredQuestions] = useState(0)
 
   const currentQuestion = decodeQuestion(questions[currentIndex])
   currentQuestion.title = `Question ${currentIndex + 1} of ${questions.length}`
@@ -16,6 +15,7 @@ function useQuiz () {
   const count = questions.length
   const isCorrect = answer === currentQuestion.correct_answer
   const isLastQuestion = currentIndex === count - 1
+  const answeredQuestions = answer ? currentIndex + 1 : currentIndex
 
   return {
     currentQuestion,
@@ -31,7 +31,6 @@ function useQuiz () {
   }
 
   function choose (choice) {
-    setAnsweredQuestions(answeredQuestions + 1)
     setAnswer(choice)
     if (choice === currentQuestion.correct_answer) {
       setCorrectAnswers(correctAnswers + 1)
@@ -47,7 +46,6 @@ function useQuiz () {
     setAnswer(undefined)
     setCurrentIndex(0)
     setCorrectAnswers(0)
-    setAnsweredQuestions(0)
   }
 }
 
