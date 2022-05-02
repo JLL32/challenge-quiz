@@ -4,7 +4,7 @@ function useScore (answeredQuestions, correctAnswers, count) {
   if (answeredQuestions === 0) {
     return {
       score: 0,
-      maxScore: 0,
+      maxScore: 100,
       minScore: 0
     }
   }
