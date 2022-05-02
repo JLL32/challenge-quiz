@@ -6,8 +6,10 @@ function useChoices (correctAnswer, incorrectAnswers) {
   const choices = [correctAnswer, ...incorrectAnswers]
   // memoizing the array of choices to avoid re-ordering
   // at each re-render of the same question
+  // also turning the dependency into a string to
+  // check for deep equality
   return {
-    choices: useMemo(() => shuffle(choices), [correctAnswer]),
+    choices: useMemo(() => shuffle(choices), [JSON.stringify(choices)]),
     count: choices.length
   }
 }
