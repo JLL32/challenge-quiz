@@ -48,7 +48,7 @@ background-color: #77F2E4;
 `
 
 const Bar2 = styled(Bar)`
-background-color: #60C4B8;
+background-color: var(--teal);
 `
 
 const Bar3 = styled(Bar)`
@@ -57,7 +57,7 @@ background-color: #38736C;
 
 const Bar4 = styled(Bar)`
 background-color: transparent;
-border: 1px solid var(--teal);
+border: 1px solid #38736C;
 border-radius: var(--radius);
 width: 100%;
 `
