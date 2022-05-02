@@ -66,6 +66,7 @@ const TextContainer = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: space-between;
+margin-bottom: 2px;
 `
 
 const Highlight = styled.span`
