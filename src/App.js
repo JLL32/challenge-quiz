@@ -80,6 +80,12 @@ font-family: sans-serif;
 width: 570px;
 height: 770px;
 padding: 30px;
+@media (max-width: 600px) {
+    padding: 20px;
+    border: none;
+    height: 99vh;
+    min-height: 700px;
+}
 `
 
 const QuizContainer = styled.div`
